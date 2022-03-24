@@ -13,4 +13,5 @@ Powered by `streamlit`. Based on **GPT-2**.
 + Last incomplete sentence (if not the only one) is discarded [manually](https://github.com/natasha/razdel#usage)
 + AMAZING kitties and best front-end design ever!
 
-**New feature**: the net is much less offensive than v1! Although poems might be quite different...
+**New feature**: the net is much less offensive than [v1](https://github.com/Mathematician2000/lababoba)!
+Although poems might be quite different...
