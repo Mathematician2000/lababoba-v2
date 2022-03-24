@@ -69,9 +69,9 @@ def load_model(**kwargs: Any) -> LabaBobaModel:
             ya = YaDisk(token=os.environ.get('YADISK_OAUTH_TOKEN'))
             if not ya.check_token():
                 raise ValueError('Token check failed')
-            for filename in ya.listdir(f'/{folder}'):
+            for filename in ya.listdir(f'/LabaBoba v2/{folder}'):
                 path = f'{folder}/{filename}'
-                ya.download(f'/{path}', path)
+                ya.download(f'/LabaBoba v2/{path}', path)
 
     return LabaBobaModel(
         'gpt2',
