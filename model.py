@@ -63,6 +63,7 @@ class LabaBobaModel:
 @st.cache(allow_output_mutation=True, max_entries=1)
 def load_model(**kwargs: Any) -> LabaBobaModel:
     folder = 'LM_outputs'
+    print(Path(folder).is_dir())
     if not Path(folder).is_dir():
         with st.spinner('Скачиваем модельку... Придётся подождать.'):
             Path(folder).mkdir(exist_ok=True)
@@ -71,6 +72,7 @@ def load_model(**kwargs: Any) -> LabaBobaModel:
                 raise ValueError('Token check failed')
             for filename in ya.listdir(f'/LabaBoba v2/{folder}'):
                 path = f'{folder}/{filename}'
+                print(filename, path)
                 ya.download(f'/LabaBoba v2/{path}', path)
 
     return LabaBobaModel(
