@@ -75,7 +75,7 @@ def load_model(**kwargs: Any) -> LabaBobaModel:
 
     return LabaBobaModel(
         'gpt2',
-        'LM',
+        'LM_outputs',
         use_cuda=False,
         args=kwargs,
     )
