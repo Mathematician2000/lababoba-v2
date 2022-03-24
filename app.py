@@ -10,7 +10,7 @@ st.set_page_config(
 
 
 from model import (
-    model, DEFAULT_MAX_LEN, HEIGHT, MIN_LEN, MAX_CHARS, MAX_LEN,
+    DEFAULT_MAX_LEN, HEIGHT, MIN_LEN, MAX_CHARS, MAX_LEN, MODEL,
 )
 from utils import set_background
 
@@ -24,7 +24,9 @@ set_background(
 st.title('ЛабаБоба v2 приветствует Вас!')
 st.markdown(r'''
 Даже не делайте вид, что не узнали меня.
-Это же я, **ЛабаБоба**! Вернее *лучшая* версия оного (моё почтение).
+Это же я, **ЛабаБоба**! Вернее *лучшая* версия
+[оного](https://share.streamlit.io/mathematician2000/lababoba/app.py)
+ (моё почтение).
 
 Нет, я не лаборатория и к таверне не имею никакого отношения.
 Да, я знаком с [Балабобой](https://yandex.ru/lab/yalm), мы родственники.
@@ -54,11 +56,11 @@ max_length = st.slider(
 button = st.button('Налабабобить')
 
 
-model.clear_output()
+MODEL.clear_output()
 if button:
     try:
         if prompt:
-            model.run_model(
+            MODEL.run_model(
                 prompt,
                 max_length=max_length,
             )
@@ -68,7 +70,7 @@ if button:
             f'JUST LOOK AT THIS MADNESS:\n{err}'
         )
 
-st.markdown(model.get_last_output())
+st.markdown(MODEL.get_last_output())
 
 st.markdown('_' * 10)
 st.markdown('by [Mathematician2000](https://gitlab.com/Mathematician2000)')

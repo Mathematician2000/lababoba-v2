@@ -60,19 +60,23 @@ class LabaBobaModel:
         self.output = ''
 
 
+FOLDER_LENGTH = 8
+
+
 @st.cache(allow_output_mutation=True, max_entries=1)
 def load_model(**kwargs: Any) -> LabaBobaModel:
     folder = 'LM_outputs'
-    print(Path(folder).is_dir())
-    if not Path(folder).is_dir():
+    folder_path = Path(folder)
+    if (not folder_path.is_dir() or
+            len(list(folder_path.iterdir())) < FOLDER_LENGTH):
         with st.spinner('Скачиваем модельку... Придётся подождать.'):
-            Path(folder).mkdir(exist_ok=True)
+            folder_path.mkdir(exist_ok=True)
             ya = YaDisk(token=os.environ.get('YADISK_OAUTH_TOKEN'))
             if not ya.check_token():
                 raise ValueError('Token check failed')
-            for filename in ya.listdir(f'/LabaBoba v2/{folder}'):
+            for file in ya.listdir(f'/LabaBoba v2/{folder}'):
+                filename = file.name
                 path = f'{folder}/{filename}'
-                print(filename, path)
                 ya.download(f'/LabaBoba v2/{path}', path)
 
     return LabaBobaModel(
@@ -83,4 +87,4 @@ def load_model(**kwargs: Any) -> LabaBobaModel:
     )
 
 
-model = load_model(**MODEL_ARGS)
+MODEL = load_model(**MODEL_ARGS)
